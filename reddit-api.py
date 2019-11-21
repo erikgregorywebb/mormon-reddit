@@ -3,9 +3,7 @@
 # https://github.com/reddit-archive/reddit/wiki/API
 # https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example#first-steps
 
-
 ### Authentication
-
 import praw
 import pandas as pd
 import time
@@ -20,7 +18,6 @@ reddit = praw.Reddit(client_id = 'CLIENT-ID-HERE',
 subreddits = ['latterdaysaints', 'exmormon', 'lds', 'mormon']   
 
 ### Submissions
-
 rows = []
 for item in subreddits:
     subreddit = reddit.subreddit(item)
@@ -48,7 +45,6 @@ submissions = pd.DataFrame(rows)
 submissions.columns = ['subreddit', 'submission_id', 'title', 'text', 'datetime', 'author_name', 'author_id', 'url', 'permalink', 'score', 'upvote_ratio', 'num_comments']  
 
 ### Submissions
-
 rows = []
 for item in submissions['submission_id']:
     submission = reddit.submission(id = item)
@@ -74,7 +70,6 @@ comments = pd.DataFrame(rows)
 comments.columns = ['submission_id', 'comment_id', 'comment_author', 'comment_body', 'comment_creation_date', 'comment_score', 'comment_is_submitter', 'comment_submission_id', 'comment_parent_id']
 
 ### Redditors
-
 all_redditors = submissions['author_name'].tolist() + comments['comment_author'].tolist()
 all_redditors = list(set(all_redditors))
 
